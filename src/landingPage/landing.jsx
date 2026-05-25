@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import Style from './landing.module.css';
 
-const images = import.meta.glob('./pictures/*', { eager: true, as: 'url' });
+const images = import.meta.glob('./pictures/*', { eager: true });
+
+const getImg = (path) => images[path]?.default ?? images[path];
 
 const features = [
-  { title: "Fast", desc: "I like your Eyes", img: images['./pictures/pic1.jpg'] },
-  { title: "Reliable", desc: "I ", img: images['./pictures/pic2.jpg'] },
-  { title: "Powerful", desc: "i don't know why its powerful", img: images['./pictures/pic3.jpg'] },
-  { title: "Fast", desc: "i don't know why its fast", img: images['./pictures/pic4.jpg'] },
-  { title: "Reliable", desc: "i don't know why its reliable", img: images['./pictures/pic5.jpg'] },
-  { title: "Powerful", desc: "i don't know why its powerful", img: images['./pictures/pic6.jpg'] },
-  { title: "Powerful", desc: "i don't know why its powerful", img: images['./pictures/pic7.jpg'] }
+  { title: "Fast", desc: "I like your Eyes", img: getImg('./pictures/pic1.jpg') },
+  { title: "Reliable", desc: "I ", img: getImg('./pictures/pic2.jpg') },
+  { title: "Powerful", desc: "i don't know why its powerful", img: getImg('./pictures/pic3.jpg') },
+  { title: "Fast", desc: "i don't know why its fast", img: getImg('./pictures/pic4.jpg') },
+  { title: "Reliable", desc: "i don't know why its reliable", img: getImg('./pictures/pic5.jpg') },
+  { title: "Powerful", desc: "i don't know why its powerful", img: getImg('./pictures/pic6.jpg') },
+  { title: "Powerful", desc: "i don't know why its powerful", img: getImg('./pictures/pic7.jpg') }
 ]
 
 function FeatureCard({ title, desc, img }) {
@@ -30,7 +32,7 @@ function Page() {
   return (
     <>
       <header id="header" className={Style.header}>
-        <img src={images['./pictures/logo.png']} alt="Product Logo" className={Style.headerImg} />
+        <img src={getImg('./pictures/logo.png')} alt="Product Logo" className={Style.headerImg} />
         <nav id="nav-bar" className={Style.navBar}>
           <a href="#features" className={Style.navlink}>Features</a>
           <a href="#video" className={Style.navlink}>Video</a>
